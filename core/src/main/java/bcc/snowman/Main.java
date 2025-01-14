@@ -34,7 +34,7 @@ public class Main extends ApplicationAdapter {
     private float HEIGHT = 6;
 
     public void create() {
-        world = new World(new Vector2(0, -9.8f), true);
+        world = new World(new Vector2(0, -15f), true);
         debugRenderer = new Box2DDebugRenderer();
         shapeRenderer = new ShapeRenderer(); // Initialize ShapeRenderer
 
@@ -146,7 +146,15 @@ public class Main extends ApplicationAdapter {
 
         //final snowball
         //ADD THE CODE HERE
+        ballShape.setRadius(.15f);
+        ballShape.setPosition(new Vector2(0, .50f));
+        FixtureDef topSnowball = new FixtureDef();
+        topSnowball.shape = ballShape;
+        topSnowball.density = 1f;
+        topSnowball.restitution = 0.8f; 
 
+        ball.createFixture(topSnowball);
+        
         ballShape.dispose();
         ball.setLinearVelocity(new Vector2(randomFloat(-2,2), randomFloat(-2,2)));
 
